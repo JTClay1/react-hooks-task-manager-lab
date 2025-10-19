@@ -133,3 +133,91 @@ Ensure the application:
 - Submits new task with `useId`
 - Marks tasks as complete.
 - Filters tasks shown on the page by a search input.
+
+--------------------------------------------------------------------------------
+
+Module 4: Standard Hooks (useRef, useId, useContext)
+Overview
+
+This module focused on three standard React hooks that help manage component data, references, and global state more effectively. Each hook provides a specific type of functionality that simplifies how components share information or handle reactivity.
+
+useRef
+
+useRef stores data that persists across renders without causing re-renders.
+
+Common use cases: accessing DOM elements, keeping previous values, or holding mutable values like input text.
+
+The value is accessed with .current, and updates to it do not trigger a re-render.
+
+Example: using useRef to store the current search term without updating the entire component on each keystroke.
+
+Process:
+
+Create a ref with const ref = useRef(initialValue)
+
+Read or write its value using ref.current
+
+React does not re-render when this value changes
+
+useId
+
+useId generates a unique, stable ID for elements such as form inputs and labels.
+
+Prevents duplicate IDs across re-renders or multiple component instances.
+
+Helps maintain accessibility (for example, linking labels and inputs with htmlFor and id).
+
+Example:
+
+const inputId = useId();
+<label htmlFor={inputId}>Name:</label>
+<input id={inputId} />
+
+
+Process:
+
+Call useId() to generate a unique identifier.
+
+Use that ID anywhere you need consistent identification across renders.
+
+useContext
+
+useContext provides a way to share state across multiple components without prop drilling.
+
+Works with createContext() and a Provider component to create global state.
+
+Useful for managing data that should be accessible anywhere in the app, like user data, theme, or shared lists.
+
+Process:
+
+Create the context: export const MyContext = createContext()
+
+Wrap your app or a section in <MyContext.Provider value={data}>
+
+Access the data in any child component using useContext(MyContext)
+
+Lab: Standard Hooks - Task Manager
+
+In this lab, useRef, useId, and useContext were implemented together to build a Task Manager application:
+
+useRef: used to hold the search input value without triggering unnecessary re-renders.
+
+useId: used to create unique IDs for form labels and inputs for accessibility.
+
+useContext: used to manage global task state, including adding, toggling, and filtering tasks.
+
+All tests passed successfully, confirming proper implementation of each hook.
+
+Quiz: Standard Hooks
+
+The quiz reinforced:
+
+useRef for persistence without re-renders
+
+useId for generating unique, accessible IDs
+
+useContext for sharing and managing global state
+
+Summary
+
+Module 4 demonstrated how to use React’s built-in hooks to handle component state, persistent values, and global context cleanly and efficiently. Together, these hooks improve readability, maintainability, and performance in modern React applications.
